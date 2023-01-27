@@ -6,7 +6,6 @@ let url = new URL(url_string);
 let sortParam = url.searchParams.get("sort");
 let params = Object.keys(tours[0]);
 console.log("sort: ", sortParam);
-// if (!sortParam) sortParam = id;
 
 const renderTable = () => {
 	tableHead.innerHTML = `
