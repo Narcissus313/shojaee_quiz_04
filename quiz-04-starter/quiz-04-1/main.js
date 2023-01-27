@@ -5,11 +5,11 @@ let url_string = window.location.href;
 let url = new URL(url_string);
 let limit = url.searchParams.get("limit");
 let page = url.searchParams.get("page");
-console.log(page);
 
 const renderTable = (page = null, limit = null) => {
 	if (!limit) limit = 5;
 	if (!page) page = 1;
+
 	tableHead.innerHTML = `
 		<tr>
 			<th scope="col">No.</th>
