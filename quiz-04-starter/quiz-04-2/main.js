@@ -1,5 +1,12 @@
-const tableHead = document.querySelector('thead');
-const tableBody = document.querySelector('tbody');
+const tableHead = document.querySelector("thead");
+const tableBody = document.querySelector("tbody");
+
+let url_string = window.location.href;
+let url = new URL(url_string);
+let sortParam = url.searchParams.get("sort");
+let params = Object.keys(tours[0]);
+console.log("sort: ", sortParam);
+// if (!sortParam) sortParam = id;
 
 const renderTable = () => {
 	tableHead.innerHTML = `
@@ -17,6 +24,23 @@ const renderTable = () => {
 		</tr>`;
 
 	let rowCount = 1;
+	console.log(tours);
+	if (!!sortParam) {
+		if (sortParam.startsWith("-"))
+			tours.sort((a, b) =>
+				a.sortParam.localeCompare(b.sortParam, undefined, {
+					numeric: true,
+					insensitive: true,
+				})
+			);
+		else {
+			tours.sort((a, b) =>
+				b.sortParam.localeCompare(a.sortParam, undefined, {
+					numeric: true,
+				})
+			);
+		}
+	}
 	for (const tour of tours) {
 		tableBody.innerHTML += `
 			<tr>
