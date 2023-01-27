@@ -7,7 +7,9 @@ let limit = url.searchParams.get("limit");
 let page = url.searchParams.get("page");
 console.log(page);
 
-const renderTable = (page,limit) => {
+const renderTable = (page = null, limit = null) => {
+	if (!limit) limit = 5;
+	if (!page) page = 1;
 	tableHead.innerHTML = `
 		<tr>
 			<th scope="col">No.</th>
@@ -22,14 +24,13 @@ const renderTable = (page,limit) => {
 			<th scope="col">Ratings Quantity</th>
 		</tr>`;
 
-	for (let i = 1; i <= limit; i++) {
-		let rowCount = 1;
-		for (const tour of tours.slice(
-			limit * (page - 1),
-			limit * (page - 1) + limit
-		)) {
-			if (rowCount > limit) return;
-			tableBody.innerHTML += `
+	let rowCount = 1;
+	for (const tour of tours.slice(
+		limit * (page - 1),
+		limit * (page - 1) + limit
+	)) {
+		if (rowCount > limit) return;
+		tableBody.innerHTML += `
 			<tr>
 				<th scope="row">${rowCount}</th>
 				<td>${tour.id}</td>
@@ -43,9 +44,8 @@ const renderTable = (page,limit) => {
 				<td>${tour.ratingsQuantity}</td>
 			</tr>`;
 
-			rowCount += 1;
-		}
+		rowCount += 1;
 	}
 };
 
-renderTable(page,limit);
+renderTable(page, limit);
