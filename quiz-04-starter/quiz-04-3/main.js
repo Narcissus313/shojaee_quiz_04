@@ -20,6 +20,13 @@ const renderTable = () => {
 			<th scope="col">Ratings Average</th>
 			<th scope="col">Ratings Quantity</th>
 		</tr>`;
+	// let ths = tableHead.getElementsByTagName("th");
+	// let res = [];
+	// for (const th of ths) {
+	// 	if (th.innerText !== "Price") console.log(th);
+	// }
+	console.log(ths);
+	// tableHead.getElementsByTagName("tr").innerHTML = res.join("");
 
 	let rowCount = 1;
 	for (const tour of tours) {
