@@ -3,13 +3,8 @@ const tableBody = document.querySelector("tbody");
 
 let url_string = window.location.href;
 let url = new URL(url_string);
-let fieldsToRemove = url.searchParams
-	.get("fields")
-	.replaceAll("-", "")
-	.split(",");
-// let params = Object.keys(tours[0]);
+let fieldsToRemove = url.searchParams.get("fields").split(",");
 console.log("fieldsToRemove: ", fieldsToRemove);
-if (params.includes(fieldsToRemove)) console.log(fieldsToRemove);
 
 const renderTable = () => {
 	tableHead.innerHTML = `
@@ -29,7 +24,7 @@ const renderTable = () => {
 	let rowCount = 1;
 	for (const tour of tours) {
 		for (const key of fieldsToRemove) {
-			delete tour[key];
+			if (key.startsWith("-")) delete tour[key.replaceAll("-", "")];
 		}
 		tableBody.innerHTML += `
 			<tr>
