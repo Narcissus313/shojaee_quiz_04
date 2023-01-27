@@ -7,9 +7,9 @@ let filterKey;
 let filterValue;
 try {
 	filterKey = url.search.split("?")[1].split("=")[0];
-	// console.log("filterKey: ", filterKey);
+	console.log("filterKey: ", filterKey);
 	filterValue = url.search.split("?")[1].split("=")[1];
-	// console.log("filterValue: ", filterValue);
+	console.log("filterValue: ", filterValue);
 } catch (error) {}
 
 const renderTable = () => {
@@ -31,7 +31,7 @@ const renderTable = () => {
 
 	if (filterKey) {
 		for (const tour of tours) {
-			if (tour[filterKey] === filterValue) {
+			if (tour[filterKey] === String(filterValue)) {
 				tableBody.innerHTML += `
 			<tr>
 				<th scope="row">${rowCount}</th>
